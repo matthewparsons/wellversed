@@ -8,8 +8,9 @@
 #  content    :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  filename   :string(255)
 #
 
 class Piece < ActiveRecord::Base
-  attr_accessible :author, :content, :title
+  attr_accessible :author, :content, :title, :filename
 end
