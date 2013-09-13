@@ -66,6 +66,20 @@ describe "Authentication" do
           it "should render the desired protected page" do
             page.should have_selector('title', text: 'Edit user')
           end
+
+          describe "when signing in again" do
+            before do
+              delete signout_path
+              visit signin_path
+              fill_in "Email",    with: user.email
+              fill_in "Password", with: user.password
+              click_button "Sign in"
+            end
+
+            it "should render the default (profile) page" do
+              page.should have_selector('title', text: user.name)
+            end
+          end
         end
       end
 
@@ -114,6 +128,32 @@ describe "Authentication" do
         before { delete user_path(user) }
         specify { response.should redirect_to(root_url) }
       end
+    end
+  end
+
+  describe "for signed-in users" do
+    let(:user) { FactoryGirl.create(:user) }
+    before { sign_in user }
+  
+    describe "when accessing new action should redirect to root URL" do
+      before { get new_user_path }
+      specify { response.should redirect_to(root_path) }
+    end
+  
+    describe "when accessing create action should redirect to root URL" do
+      before { post users_path }
+      specify { response.should redirect_to(root_path) }
+    end
+  end
+
+  describe "as an admin user" do
+    let(:admin) { FactoryGirl.create(:admin) }
+    before { sign_in admin }
+
+    describe "cannot delete self by submitting DELETE request" do
+      before { delete user_path(admin)}
+      specify { response.should redirect_to(users_path),
+                flash[:error].should =~ /Can not delete own admin account!/i } 
     end
   end
 
