@@ -179,6 +179,21 @@ input {
   }
 }
 
+/* pieces index */
+
+.pieces {
+  font-size: 18px;
+  margin: 20px;
+  align: left;
+  border-collapse: collapse;
+
+  td {
+    font-size:  18px;
+    text-align: left;
+    padding: 15px;
+  }
+}
+
 /* miscellaneous */
 
 .debug_dump {

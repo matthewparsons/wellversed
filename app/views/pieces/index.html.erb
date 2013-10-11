@@ -1,10 +1,9 @@
-<h1>Listing pieces</h1>
+<h1>Pieces</h1>
 
-<table>
+<table class="pieces">
   <tr>
-    <th>Title</th>
     <th>Author</th>
-    <th>Content</th>
+    <th>Title</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,10 +11,8 @@
 
 <% @pieces.each do |piece| %>
   <tr>
-    <td><%= piece.title %></td>
-    <td><%= piece.author %></td>
-    <td><%= piece.content %></td>
-    <td><%= link_to 'Show', piece %></td>
+    <td><%= link_to piece.author, piece %></td>
+    <td><%= link_to piece.title, piece %></td>
     <td><%= link_to 'Edit', edit_piece_path(piece) %></td>
     <td><%= link_to 'Destroy', piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
