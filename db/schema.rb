@@ -11,10 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130917075834) do
+ActiveRecord::Schema.define(:version => 20131014081236) do
+
+  create_table "authors", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "pieces", :force => true do |t|
-    t.string   "author"
+    t.string   "author_id"
     t.string   "title"
     t.string   "filename"
     t.datetime "created_at", :null => false
