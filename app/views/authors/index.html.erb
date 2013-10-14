@@ -1,0 +1,15 @@
+<h1>Author</h1>
+
+<table class="pieces">
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @authors.each do |author| %>
+  <tr>
+    <td><%= link_to author.name, author %></td>
+  </tr>
+<% end %>
+</table>

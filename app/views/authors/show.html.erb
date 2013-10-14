@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Author:</b>
+  <%= @author.name %>
+</p>
+<ul>
+<% @author.pieces.each do |piece| %>
+    <li><%= link_to piece.title, piece %></td>
+<% end %>
+</ul>
+
