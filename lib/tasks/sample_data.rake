@@ -26,9 +26,9 @@ namespace :db do
       author = Author.create!(name: name)
       10.times do |n|
         title = Faker::Lorem.words(2).join(" ").to_s.capitalize
-        author_id = author
+        author_id = author.id
         filename = "lorem_ipsum.txt"
-        Piece.create!(author_id: author, title: title, filename: filename)
+        Piece.create!(author_id: author_id, title: title, filename: filename)
       end
     end
 
