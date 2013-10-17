@@ -6,12 +6,9 @@ describe "Pieces pages" do
 
 	describe "index" do
     	let(:user) { FactoryGirl.create(:user) }
-		before do
-#      		sign_in user
-      		visit pieces_path
-    	end
+		before { visit pieces_path }
 
-		it { should have_selector('h1', text: 'Pieces') }
+		it { should have_selector('h1', text: 'Sets') }
 
 	end
 

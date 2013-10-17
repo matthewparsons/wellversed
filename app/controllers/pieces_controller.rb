@@ -25,6 +25,7 @@ class PiecesController < ApplicationController
   # GET /pieces/new.json
   def new
     @piece = Piece.new
+    @piece.build_author
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,6 +43,13 @@ class PiecesController < ApplicationController
   def create
     @piece = Piece.new(params[:piece])
 
+    # if author exists
+    if !Author.find_by_name(params[:author][:name])
+      @author = Author.new(params[:author])
+      @author.save
+    end
+    @piece.author_id = Author.find_by_name(params[:author][:name])
+    
     respond_to do |format|
       if @piece.save
         format.html { redirect_to @piece, notice: 'Piece was successfully created.' }
@@ -57,6 +65,16 @@ class PiecesController < ApplicationController
   # PUT /pieces/1.json
   def update
     @piece = Piece.find(params[:id])
+
+    @piece.author_id = Author.find_by_name(params[:author][:name])
+
+    ## Added
+    if !Author.find_by_name(params[:author][:name])
+      @author = Author.new(params[:author])
+      @author.save
+    end
+    @author_id = Author.find_by_name(params[:author][:name])
+    @piece.author_id = @author_id
 
     respond_to do |format|
       if @piece.update_attributes(params[:piece])

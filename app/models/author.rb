@@ -11,5 +11,11 @@
 class Author < ActiveRecord::Base
   attr_accessible :name
   has_many :pieces
-  
+#  accepts_nested_attributes_for :pieces
+
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+
+#  def author
+#  	@author = Author.new
+#  end
 end

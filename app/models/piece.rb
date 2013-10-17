@@ -13,9 +13,19 @@
 class Piece < ActiveRecord::Base
   attr_accessible :author_id, :filename, :title
   belongs_to :author
-  
+  accepts_nested_attributes_for :author
+  attr_accessible :author, :author_attributes
+
   def author_name
-  	author.name
+  	if !author.nil?
+  		author.name
+  	else
+  		"Unknown"
+  	end
   end
+
+#  def author
+#  	@author = Author.new
+#  end
 
 end
