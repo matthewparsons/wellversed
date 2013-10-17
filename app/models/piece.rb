@@ -3,7 +3,7 @@
 # Table name: pieces
 #
 #  id         :integer          not null, primary key
-#  author_id  :string(255)
+#  author_id  :integer
 #  title      :string(255)
 #  filename   :string(255)
 #  created_at :datetime         not null
