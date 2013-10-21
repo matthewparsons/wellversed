@@ -17,7 +17,9 @@
 class User < ActiveRecord::Base
   	attr_accessible :email, :firstname, :name, :surname, 
   					:password, :password_confirmation
-  	has_secure_password 
+  	has_secure_password
+    has_many :studies, dependent: :destroy
+    has_many :pieces, through: :studies
 
 #  	before_save { |user| user.email = email.downcase }
     before_save { email.downcase! }
@@ -30,6 +32,18 @@ class User < ActiveRecord::Base
     validates :password, presence: true, length: { minimum: 6 }
 	  validates :password_confirmation, presence: true
     after_validation { self.errors.messages.delete(:password_digest)}
+
+    def studying?(piece)
+      studies.find_by_piece_id(piece.id)
+    end
+
+    def study!(piece)
+      studies.create(piece_id: piece.id)
+    end
+
+    def abandon!(piece)
+      studies.find_by_piece_id(piece.id).destroy
+    end
 
     private
 

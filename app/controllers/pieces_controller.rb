@@ -2,7 +2,8 @@ class PiecesController < ApplicationController
   # GET /pieces
   # GET /pieces.json
   def index
-    @pieces = Piece.all
+    @pieces = Piece.paginate(page: params[:page], :per_page => 20)
+#   @pieces = Piece.all
 
     respond_to do |format|
       format.html # index.html.erb

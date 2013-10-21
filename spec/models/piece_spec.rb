@@ -6,6 +6,7 @@
 #  author_id  :integer
 #  title      :string(255)
 #  filename   :string(255)
+#  content    :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -14,7 +15,7 @@ require 'spec_helper'
 
 describe Piece do
 	before do
-		@piece = Piece.new(author_id: "Sample Author", title: "Sample Title", filename: "sample_filename.txt")
+		@piece = Piece.new(author_id: "1", title: "Sample Title", filename: "sample_filename.txt")
 	end
 
 	subject { @piece }

@@ -1,4 +1,4 @@
-<pre>Lorem ipsum dolor sit amet, 
+Lorem ipsum dolor sit amet, 
 consectetur adipiscing elit. 
 Proin sagittis, enim eu porttitor eleifend, 
 est purus tristique justo, 
@@ -13,4 +13,4 @@ Vestibulum id felis sodales,
 placerat orci id, gravida erat. 
 Curabitur convallis, nunc in imperdiet congue, 
 nulla massa interdum augue, non congue augue mauris sed purus.
-</pre>
+

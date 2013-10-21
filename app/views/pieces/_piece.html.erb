@@ -1,0 +1,8 @@
+<tr>
+    <td><%= link_to piece.title, piece %></td>
+	<td><%= link_to piece.author_name, author_path(piece.author_id) %></td> 
+  	<% if signed_in? && current_user.admin? %>
+    	<td><%= link_to 'Edit', edit_piece_path(piece) %></td>
+    	<td><%= link_to 'Delete', piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  	<% end %>
+</tr>

@@ -18,4 +18,16 @@ FactoryGirl.define do
     	admin true
     end
   end
+
+  factory :author do
+  	sequence(:name) { |n| "Name #{n}"}
+  end
+
+  factory :piece do
+  	sequence(:title) { |n| "Title #{n}"}
+  	sequence(:author_id) { |n| 1 }
+    sequence(:content) { |n| "Content #{n}"}
+  end
+
+
 end

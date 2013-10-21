@@ -34,6 +34,8 @@ describe User do
 	it { should respond_to(:remember_token)}
 	it { should respond_to(:admin)}
 	it { should respond_to(:authenticate) }
+	it { should respond_to(:studies)}
+	it { should respond_to(:pieces) }
 
 	it { should be_valid }
 	it { should_not be_admin }
@@ -42,7 +44,7 @@ describe User do
 		it "should not allow access to admin" do
 			expect do
 				User.new(admin: true) 
-			end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
+			end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
 		end
 	end
 
@@ -150,6 +152,24 @@ describe User do
 	describe "remember token" do
 		before { @user.save }
 		its(:remember_token) { should_not be_blank }
+	end
+
+	describe "studying" do
+		let(:piece) { FactoryGirl.create(:piece) }
+		before do 
+			@user.save
+			@user.study!(piece)
+		end
+
+		it { should be_studying(piece)}
+		its(:pieces) { should include(piece)}
+
+		describe "and abandoning" do
+			before { @user.abandon!(piece)}
+
+			it { should_not be_studying(piece)}
+			its(:pieces) { should_not include(piece)}
+		end
 	end
 
 end

@@ -28,7 +28,11 @@ namespace :db do
         title = Faker::Lorem.words(2).join(" ").to_s.capitalize
         author_id = author.id
         filename = "lorem_ipsum.txt"
-        Piece.create!(author_id: author_id, title: title, filename: filename)
+        content = File.open("data/" + filename).read
+        Piece.create!(author_id: author_id, 
+          title: title, 
+          filename: filename, 
+          content: content)
       end
     end
 

@@ -1,20 +1,19 @@
 <h1>Sets</h1>
 
+<%= will_paginate %>
+
 <table class="pieces">
   <tr>
-    <th>Author</th>
     <th>Title</th>
+    <th>Piece</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @pieces.each do |piece| %>
+<% @pieces.order(:title).each do |piece| %>
   <tr>
-    <td><%= link_to piece.author_name, author_path(piece.author_id) %></td> 
-    <td><%= link_to piece.title, piece %></td>
-    <td><%= link_to 'Edit', edit_piece_path(piece) %></td>
-    <td><%= link_to 'Destroy', piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%= render piece %>
   </tr>
 <% end %>
 </table>
