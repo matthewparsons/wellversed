@@ -8,4 +8,22 @@
       </h1>
     </section>
   </aside>
+
+<table class="pieces">
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  Pieces studied: <%= @user.studies.count %>
+  <% @user.pieces.order(:title).each do |piece| %>
+  <tr>
+    <%= render piece %>
+  </tr>
+<% end %>
+</table>
+
 </div>

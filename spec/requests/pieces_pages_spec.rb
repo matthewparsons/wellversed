@@ -52,4 +52,29 @@ describe "Pieces pages" do
 
 	end
 
+  describe "piece page" do
+    let(:piece) { FactoryGirl.create(:piece) }
+
+    describe "study/abandon buttons" do    
+      let (:user) { FactoryGirl.create(:user)}
+      before { sign_in user }
+
+      describe "studying a piece" do
+        before { visit piece_path(piece) }
+
+        it "should increment the user's studied piece count" do
+          expect do
+            click_button "Study"
+          end.to change(user.studies, :count).by(1)
+        end
+
+        describe "toggling the button" do
+          before { click_button "Study" }
+          it { should have_xpath("//input[@value='Abandon']")}
+        end
+      end
+    end
+
+    # Finish 'abandon tests from Listing 11.32'
+  end
 end

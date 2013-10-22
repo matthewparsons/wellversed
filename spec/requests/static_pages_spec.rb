@@ -12,11 +12,24 @@ describe "Static pages" do
 
   describe "Home page" do
     before { visit root_path }
-    let(:heading) {'Rhymember'}
+    let(:heading) {'Webmanda'}
     let(:page_title) { '' }
 
     it_should_behave_like "all static pages"
     it { should_not have_selector('title', text: '| Home') }
+
+    describe "for signed-in users" do
+      let(:user) { FactoryGirl.create(:user) }
+      before do
+        FactoryGirl.create(:piece)
+        sign_in user
+        visit root_path
+      end
+
+#      it "should render the user's dashboard" do
+#        expect(page).to have_selector 
+#      end
+    end
   end
 
   describe "Help page" do

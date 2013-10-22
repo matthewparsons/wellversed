@@ -1,6 +1,11 @@
 Wellversed::Application.routes.draw do
-  resources :users
+  resources :users do
+    member do
+      get :studying
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
+  resources :studies, only: [:create, :destroy]
 
   root to: 'static_pages#home'
 

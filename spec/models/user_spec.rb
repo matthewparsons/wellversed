@@ -36,6 +36,9 @@ describe User do
 	it { should respond_to(:authenticate) }
 	it { should respond_to(:studies)}
 	it { should respond_to(:pieces) }
+#	it { should respond_to(:studied_pieces)}
+	it { should respond_to(:studying?)}
+	it { should respond_to(:study!)}
 
 	it { should be_valid }
 	it { should_not be_admin }
