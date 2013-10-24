@@ -99,4 +99,12 @@ class PiecesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+#  def studying
+#    @title = "Studying"
+#    @user = User.find(params[:id])
+#    @pieces = @user.studies.paginate(page: params[:page])
+#    render 'show_studies'
+#  end
+
 end

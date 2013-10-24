@@ -4,5 +4,6 @@
   	<% if signed_in? && current_user.admin? %>
     	<td><%= link_to 'Edit', edit_piece_path(piece) %></td>
     	<td><%= link_to 'Delete', piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    	<td><%= link_to 'Practise', piece %></td>
   	<% end %>
 </tr>

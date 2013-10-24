@@ -8,7 +8,7 @@
       </h1>
     </section>
   </aside>
-
+<% if @user.studies.any? %>
 <table class="pieces">
   <tr>
     <th>Title</th>
@@ -25,5 +25,5 @@
   </tr>
 <% end %>
 </table>
-
+<% end %>
 </div>

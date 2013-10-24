@@ -4,12 +4,12 @@ class StudiesController < ApplicationController
   def create
     @piece = Piece.find(params[:study][:piece_id])
     current_user.study!(@piece)
-    redirect_to @piece
+    redirect_to current_user
   end
 
   def destroy
-    @piece = Study.find(params[:id]).studied
-    current_user.unfollow!(@piece)
-    redirect_to @piece
+    @study = Study.find(params[:id])
+    current_user.abandon!(@study)
+    redirect_to current_user
   end
 end

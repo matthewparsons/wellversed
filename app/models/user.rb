@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   	attr_accessible :email, :firstname, :name, :surname, 
   					:password, :password_confirmation
   	has_secure_password
-    has_many :studies, dependent: :destroy
+    has_many :studies, dependent: :destroy, source: :studied
     has_many :pieces, through: :studies
 
 #  	before_save { |user| user.email = email.downcase }
@@ -41,8 +41,8 @@ class User < ActiveRecord::Base
       studies.create(piece_id: piece.id)
     end
 
-    def abandon!(piece)
-      studies.find_by_piece_id(piece.id).destroy
+    def abandon!(study)
+      studies.find_by_id(study.id).destroy
     end
 
     private

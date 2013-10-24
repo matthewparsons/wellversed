@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
+  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :studying]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: :destroy
 
@@ -58,6 +58,13 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def studying
+    @title = "Studying"
+    @user = User.find(params[:id])
+    @pieces = @user.studies.paginate(page: params[:page])
+    render 'show_studies'
   end
 
   private
