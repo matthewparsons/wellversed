@@ -4,12 +4,18 @@ class StudiesController < ApplicationController
   def create
     @piece = Piece.find(params[:study][:piece_id])
     current_user.study!(@piece)
-    redirect_to current_user
+    respond_to do |format|
+      format.html { redirect_to @piece }
+      format.js
+    end
   end
 
   def destroy
     @study = Study.find(params[:id])
     current_user.abandon!(@study)
-    redirect_to current_user
+    respond_to do |format|
+      format.html { redirect_to @piece }
+      format.js
+    end
   end
 end

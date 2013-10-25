@@ -9,7 +9,7 @@
   <b>Author:</b>
   <%= @piece.author_name %>
 </p>
-<%= render 'study_form' if signed_in? %>
+<%= render 'studies/study_form' if signed_in? %>
 <p>
 <pre>
 <%= @piece.content %>

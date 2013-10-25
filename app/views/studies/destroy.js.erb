@@ -1,0 +1,2 @@
+$("#study_form").html("<%= escape_javascript(render('studies/study')) %>")
+$("#studying").html('<%= current_user.studies.count %>')

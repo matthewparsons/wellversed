@@ -52,7 +52,7 @@ describe "Pieces pages" do
 
 	end
 
-  describe "piece page" do
+  describe "study a piece" do
     let(:piece) { FactoryGirl.create(:piece) }
 
     describe "study/abandon buttons" do    
@@ -60,7 +60,7 @@ describe "Pieces pages" do
       before { sign_in user }
 
       describe "studying a piece" do
-        before { visit piece_path(piece) }
+        before(:each) { visit piece_path(piece)}
 
         it "should increment the user's studied piece count" do
           expect do
@@ -70,8 +70,9 @@ describe "Pieces pages" do
 
         describe "toggling the button" do
           before { click_button "Study" }
-          it { should have_xpath("//input[@value='Abandon']")}
+          it { should have_selector('input', value: 'Abandon')}
         end
+
       end
     end
 

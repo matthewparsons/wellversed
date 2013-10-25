@@ -168,7 +168,7 @@ describe User do
 		its(:pieces) { should include(piece)}
 
 		describe "and abandoning" do
-			before { @user.abandon!(piece)}
+			before { @user.abandon!(@user.studies.find_by_piece_id(piece))}
 
 			it { should_not be_studying(piece)}
 			its(:pieces) { should_not include(piece)}
