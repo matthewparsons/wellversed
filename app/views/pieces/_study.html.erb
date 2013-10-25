@@ -1,4 +1,0 @@
-<%= form_for(current_user.studies.build(piece_id: @piece.id), remote: true ) do |f| %>
-  <div><%= f.hidden_field :piece_id %></div>
-  <%= f.submit "Study", class: "btn btn-large btn-primary" %>
-<% end %>

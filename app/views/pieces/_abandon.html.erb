@@ -1,4 +1,0 @@
-<%= form_for(current_user.studies.find_by_piece_id(@piece),
-             html: { method: :delete }, remote: true ) do |f| %>
-  <%= f.submit "Abandon", class: "btn btn-large" %>
-<% end %>
