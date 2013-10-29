@@ -1,9 +1,9 @@
   <% unless current_user?(@user) %>
   <div id="study_form">
   <% if current_user.studying?(@piece) %>
-    <%= render 'studies/abandon' %>
+    <%= render 'studies/abandon_action' %>
   <% else %>
-    <%= render 'studies/study' %>
+    <%= render 'studies/study_action' %>
   <% end %>
   </div>
   <% end %>

@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+<% @piece = Piece.find_by_id(@study.piece_id) %>
+<% @title = @piece.title %>
+<% @author = Author.find_by_id(@piece.author_id).name %>
+
+Title: <%= @title %>
+<BR>
+Author: <%= @author %>

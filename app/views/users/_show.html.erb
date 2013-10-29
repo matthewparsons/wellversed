@@ -1,14 +1,11 @@
-<h2>User Info</h2>
-<% @user ||= current_user %>
-
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="span4">
     <section>
-      <h2>
+      <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
-      </h2>
+      </h1>
     </section>
   </aside>
 <% if @user.studies.any? %>

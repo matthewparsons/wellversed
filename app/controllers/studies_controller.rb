@@ -18,4 +18,14 @@ class StudiesController < ApplicationController
       format.js
     end
   end
+
+  def show
+    @study = Study.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @study }
+    end
+  end
+
 end

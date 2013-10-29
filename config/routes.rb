@@ -5,7 +5,7 @@ Wellversed::Application.routes.draw do
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
-  resources :studies, only: [:create, :destroy]
+  resources :studies
 
   root to: 'static_pages#home'
 
