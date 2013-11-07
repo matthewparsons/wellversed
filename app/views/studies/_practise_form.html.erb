@@ -1,0 +1,82 @@
+<%= form_tag study_practise_path(params[:id]), :method=>"get", :remote => true do %>
+	<div id="practise">
+		<%= text_field_tag :post, :post, :id => 'posts', :onKeyUp => "if (this.value == 'x') { this.style.color = 'red' } else if (this.value == 'stuff') { this.style.color = 'blue'}; " %>
+	</div>
+<% end %>
+
+<div id="confirmed"></div>
+<div id="index"></div>
+
+<form id="myForm">
+    <textarea name="box"></textarea> 
+    <%= hidden_field_tag "content", @piece.content %>
+</form>
+
+<div id="debug"></div>
+<script> 
+    $(document).ready(function() {
+    	$('textarea').focus();
+
+    	var i = 0;  // correctIndex
+    	var j = 0;  // totalIndex
+    	var word = 0; // word-start index (persistent save-point)
+    	var complete = "";
+    	var poem = <%= raw @piece.content.to_json %>;
+    	//var lines = poem.split(/\n/)
+    	//format_poem = poem.replace(/\n/g, "<br />");
+    	poem = poem.replace(/\s+\n/g, "|");
+    	words = poem.split(/\s+/);
+
+    	$('#debug').text(poem)
+    	//
+        $('#myForm').keydown(function(e) {
+        	var inputLetter = String.fromCharCode(e.keyCode);
+        	// only do anything if it's a printing character
+        	if (inputLetter.match(/\w| /)) {
+        		// User pressed printable character or space
+        		if (inputLetter == poem[i].toUpperCase()) {
+        			// Letter is correct
+        			//complete += poem[i];
+        			//$('#confirmed').text(complete);
+            		$('textarea').css("color","black");
+           			j = crement(j,1); i = crement(i,1);
+           		} else {
+           			// letter is incorrect
+            		$('textarea').css("color","red");
+            		//i = crement(i,1);
+            	}
+        	} else if (e.keyCode == 13) {
+        		// User pressed Enter
+        	}
+        	else if ((e.keyCode == 8) && ( i > 0)) {
+        		// User pressed backspace or delete
+	     		i = crement(i,-1)
+	     		var vlad = $('textarea').val().toUpperCase()
+	     		$('#debug').text(vlad)
+	     		if ($('textarea').val().toUpperCase() == poem.substring(0,j).toUpperCase()) {
+	     				$('textarea').css("color","black");
+	     		}
+	     	}
+
+            show_completed(poem,j)
+        	$('#index').text($('#confirmed').val().length + ' ' + $('textarea').val().length);
+        	// Write hashed cookie to record progress and guard against browser refresh
+        }); 
+		// after each letter is typed, compare the textarea to word and if they're the same, advance to the next word.  Reset form.
+		// if not, turn text red
+
+    });
+
+    function show_completed(poem,j) {
+		$('#confirmed').text(poem.substring(0,j));
+    }
+
+    function crement(index,num) {
+    	// if character is whitespace or punctuation, skip ahead one
+    	index += num
+    	if (index < 0) { index = 0}
+    	return index
+    }
+
+
+</script> 

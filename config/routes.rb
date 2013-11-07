@@ -5,7 +5,10 @@ Wellversed::Application.routes.draw do
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
-  resources :studies
+  resources :studies do
+    get "practise"
+  end
+#resources :studies
 
   root to: 'static_pages#home'
 
@@ -16,6 +19,8 @@ Wellversed::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+
+  match '/studies/practise', to: 'studies#practise'
 
   resources :pieces
   resources :users

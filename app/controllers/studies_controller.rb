@@ -28,4 +28,13 @@ class StudiesController < ApplicationController
     end
   end
 
+  def practise
+    @study = Study.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json
+    end    
+  end
+
 end
