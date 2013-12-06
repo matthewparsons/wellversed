@@ -16,7 +16,7 @@
         var total = "";
     	var raw_poem = <%= raw @piece.content.to_json %>;
 
-    	poem = raw_poem.replace(/\s*\n/g, "|");
+    	poem = raw_poem.replace(/\s*\n/g, "|").replace(/^\s*/,"");
         var pieces = poem.split(/\b/);
         var words = [];
         var textonly = []; var nottext= [];
@@ -33,17 +33,18 @@
         for (var x = 0; x<words.length; x++) {
             total += words[x].text;
         }
-        $('#debug').text(total);
+//        $('#debug').text(total);
 
         $('#myForm').keyup(function(e) {
             console.log("****");
             var inputLetter = String.fromCharCode(e.keyCode);
+            if (! inputLetter.match(/[A-Za-z0-9]/)) {
+                console.log("Ignoring typed whitespace");
+                $('textarea').val($('textarea').val().replace(/[^A-Za-z0-9]/g,''));
+                return 0;
+            }
             var typed = $('textarea').val().toUpperCase();  
             var correctLetters = words[wordNum].text.toUpperCase();
-            console.log("CORRECT: " + correctLetters);
-            console.log("WORDNUM: " + wordNum);
-            console.log("TYPED: " + typed);
-            //var rgxp = new RegExp(/typed/)
             var len = typed.length;
             console.log("SUBSTRING: " + correctLetters.substring(0,len));
 
