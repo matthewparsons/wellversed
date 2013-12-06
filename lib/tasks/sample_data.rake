@@ -54,3 +54,7 @@ def make_studies
   studied_pieces.each { |piece| user.study!(piece) }
 
 end
+
+def load_poems
+	
+end

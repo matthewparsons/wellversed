@@ -16,7 +16,7 @@
         var total = "";
     	var raw_poem = <%= raw @piece.content.to_json %>;
 
-    	poem = raw_poem.replace(/\s+\n/g, "|");
+    	poem = raw_poem.replace(/\s*\n/g, "|");
         var pieces = poem.split(/\b/);
         var words = [];
         var textonly = []; var nottext= [];
